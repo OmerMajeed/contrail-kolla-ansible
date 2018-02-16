@@ -16,5 +16,3 @@
     - neutron_plugin_agent == 'opencontrail'
     - neutron_server.enabled | bool
     - neutron_server.host_in_groups | bool
-  run_once: True
-  delegate_to: "{{ groups[neutron_server.group][0] }}"

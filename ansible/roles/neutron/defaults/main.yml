@@ -184,7 +184,7 @@ neutron_services:
     container_name: "neutron_metadata_agent"
     image: "{{ neutron_metadata_agent_image_full }}"
     privileged: True
-    enabled: "{{ neutron_plugin_agent != 'opencontrail' }}"
+    enabled: True
     host_in_groups: >-
       {{
       True if orchestration_engine == 'KUBERNETES' else

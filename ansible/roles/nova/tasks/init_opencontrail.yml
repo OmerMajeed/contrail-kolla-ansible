@@ -15,5 +15,3 @@
   when:
     - neutron_plugin_agent == 'opencontrail'
     - inventory_hostname in groups['compute']
-  run_once: True
-  delegate_to: "{{ groups['compute'][0] }}"

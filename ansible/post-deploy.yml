@@ -1,6 +1,6 @@
 ---
 - name: Creating admin openrc file on the deploy node
-  hosts: all
+  hosts: control
   tasks:
     - template:
         src: "roles/common/templates/admin-openrc.sh.j2"

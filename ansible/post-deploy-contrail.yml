@@ -2,24 +2,20 @@
 - name: Post-deploy playbook for contrail
   hosts: control
   tasks:
-# - name: Install prerequisites to install openstack clients
-#   yum:
-#     name: "{{ item }}"
-#     state: latest
-#   ignore_errors: yes
-#   with_items:
-#     - gcc
-#     - python-devel
+  - name: Install python clients for openstack components
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - python-openstackclient
+      - python-heatclient
+      - python-ironicclient
+    when: disable_nova_compute_service | bool
 
-# - name: Install python clients for openstack components
-#   pip:
-#     name: "{{ item }}"
-#     state: latest
-#   ignore_errors: yes
-#   with_items:
-#     - python-openstackclient
-#     - python-heatclient
-#     - python-ironicclient
+  - name: Creating admin openrc file for kolla-toolbox
+    template:
+      src: "roles/common/templates/admin-openrc.sh.j2"
+      dest: "{{ node_config_directory }}/kolla-toolbox/admin-openrc.sh"
 
   - name: Disable the nova-compute on the openstack container
     shell: . /etc/kolla/admin-openrc.sh && nova service-disable {{ ansible_hostname }} nova-compute

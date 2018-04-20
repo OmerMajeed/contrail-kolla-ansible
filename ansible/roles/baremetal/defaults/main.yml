@@ -14,7 +14,7 @@ disable_selinux: False
 docker_storage_driver: ""
 
 debian_pkg_install:
- - docker-engine=1.13.*
+ - docker-engine
  - git
  - python-setuptools
  - ntp

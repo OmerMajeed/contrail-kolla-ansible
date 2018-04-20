@@ -72,7 +72,7 @@ pci_passthrough_whitelist = {"devname": "{{ hostvars[inventory_hostname]['SRIOV_
 {% endif %}
 
 {% if hostvars[inventory_hostname]['SRIOV'] is defined %}
-{% if hostvars[inventory_hostname]['sriov'] | bool %}
+{% if hostvars[inventory_hostname]['SRIOV'] | bool %}
 scheduler_default_filters = PciPassthroughFilter
 scheduler_available_filters = nova.scheduler.filters.all_filters
 scheduler_available_fitlers = nova.scheduler.filters.pci_passthrough_filter.PciPassthroughFilter

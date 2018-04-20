@@ -61,6 +61,24 @@ compute_driver = fake.FakeDriver
 compute_driver = libvirt.LibvirtDriver
 {% endif %}
 
+{% if hostvars[inventory_hostname]['SRIOV'] is defined %}
+{% if hostvars[inventory_hostname]['SRIOV'] | bool %}
+{% if hostvars[inventory_hostname]['SRIOV_PHYS_NET'] is defined %}
+{% if hostvars[inventory_hostname]['SRIOV_PHYSICAL_INTERFACE'] is defined %}
+pci_passthrough_whitelist = {"devname": "{{ hostvars[inventory_hostname]['SRIOV_PHYSICAL_INTERFACE'] }}", "physical_network": "{{ hostvars[inventory_hostname]['SRIOV_PHYS_NET'] }}"}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endif %}
+
+{% if hostvars[inventory_hostname]['SRIOV'] is defined %}
+{% if hostvars[inventory_hostname]['sriov'] | bool %}
+scheduler_default_filters = PciPassthroughFilter
+scheduler_available_filters = nova.scheduler.filters.all_filters
+scheduler_available_fitlers = nova.scheduler.filters.pci_passthrough_filter.PciPassthroughFilter
+{% endif %}
+{% endif %}
+
 # Though my_ip is not used directly, lots of other variables use $my_ip
 my_ip = {{ api_interface_address }}
 

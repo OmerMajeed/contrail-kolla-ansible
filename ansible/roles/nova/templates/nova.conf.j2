@@ -71,13 +71,8 @@ pci_passthrough_whitelist = {"devname": "{{ hostvars[inventory_hostname]['SRIOV_
 {% endif %}
 {% endif %}
 
-{% if hostvars[inventory_hostname]['SRIOV'] is defined %}
-{% if hostvars[inventory_hostname]['SRIOV'] | bool %}
-scheduler_default_filters = PciPassthroughFilter
+scheduler_default_filters = RetryFilter, AvailabilityZoneFilter, RamFilter, ComputeFilter, ComputeCapabilitiesFilter, ImagePropertiesFilter, PciPassthroughFilter
 scheduler_available_filters = nova.scheduler.filters.all_filters
-scheduler_available_fitlers = nova.scheduler.filters.pci_passthrough_filter.PciPassthroughFilter
-{% endif %}
-{% endif %}
 
 # Though my_ip is not used directly, lots of other variables use $my_ip
 my_ip = {{ api_interface_address }}

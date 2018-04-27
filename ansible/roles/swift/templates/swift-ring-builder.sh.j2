@@ -1,6 +1,6 @@
 #!/bin/bash
 STORAGE_NODES=({{ swift_node_list }})
-KOLLA_SWIFT_BASE_IMAGE="{{ docker_namespace }}/{{ kolla_base_distro }}-{{ kolla_install_type }}-swift-base:{{ openstack_release }}"
+KOLLA_SWIFT_BASE_IMAGE="{{ docker_registry ~ '/' if docker_registry else '' }}{{ docker_namespace }}/{{ kolla_base_distro }}-{{ kolla_install_type }}-swift-base:{{ openstack_release }}"
 
 mkdir -p /etc/kolla/config/swift
 

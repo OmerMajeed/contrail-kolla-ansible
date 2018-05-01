@@ -43,4 +43,3 @@
     when:
       - enable_swift_opencontrail | bool
       - enable_swift | bool
-      - disk_partition is defined

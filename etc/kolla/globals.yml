@@ -115,7 +115,6 @@ nova_compute_opencontrail_init_image_full: "opencontrailnightly/contrail-opensta
 ####################
 # Arbitrary unique number from 0..255
 #keepalived_virtual_router_id: "151"
-#enable_neutron_opencontrail: "yes"
 
 
 

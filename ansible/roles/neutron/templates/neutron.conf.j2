@@ -150,7 +150,7 @@ ipv4_ptr_zone_prefix_size = 24
 ipv6_ptr_zone_prefix_size = 116
 {% endif %}
 
-{% if enable_neutron_opencontrail | bool %}
+{% if neutron_plugin_agent == 'opencontrail' %}
 [quotas]
 quota_network=-1
 quota_subnet=-1

@@ -35,6 +35,17 @@
   with_items: "{{ debian_pkg_install }}"
   when: ansible_os_family == 'Debian'
 
+# Swift needs these packages for partitioning disks
+- name: Install packages for disk partition
+  package: name={{item}} state=present
+  become: True
+  with_items:
+    - parted
+    - xfsprogs
+  when:
+    - enable_swift | bool
+    - ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+
 - name: Install wily kernel
   package: name=linux-generic-lts-wily state=latest
   register: kernel_updated

@@ -8,13 +8,19 @@ for d in {{ disk_list }}; do
     (( index++ ))
 done
 {% else %}
-index=0
-for d in swift_lb1 swift_lb2 swift_lb3; do
-    free_device=$(losetup -f)
-    fallocate -l  5G /var/cache/$d
-    losetup $free_device /var/cache/$d
-    parted $free_device -s -- mklabel gpt mkpart KOLLA_SWIFT_DATA 1 -1
-    sudo mkfs.xfs -f -L d${index} ${free_device}p1
-    (( index++ ))
+disk_array=("swift-disk1" "swift-disk2" "swift-disk3")
+mnt_array=("d0" "d1" "d2")
+
+for ((i=0;i<=2;i++)); do
+    if [ -e /var/cache/${disk_array[$i]} ]
+    then
+        echo "loopback filesystem exist"
+    else
+        truncate -s 5GB /var/cache/${disk_array[$i]}
+        sudo mkfs.xfs /var/cache/${disk_array[$i]}
+        echo "/var/cache/${disk_array[$i]} /srv/node/${mnt_array[$i]} xfs loop,noatime,nodiratime,nobarrier,logbufs=8 0 0" >> /etc/fstab
+        mkdir -p /srv/node/${mnt_array[$i]}
+        mount /srv/node/${mnt_array[$i]}
+    fi
 done
 {% endif %}

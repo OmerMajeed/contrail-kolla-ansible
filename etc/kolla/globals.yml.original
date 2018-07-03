@@ -101,7 +101,6 @@ neutron_plugin_agent: "openvswitch"
 ####################
 # Arbitrary unique number from 0..255
 #keepalived_virtual_router_id: "151"
-contrail_api_interface_address: "192.168.1.21"
 
 
 
@@ -223,9 +222,6 @@ contrail_api_interface_address: "192.168.1.21"
 
 # Valid options are [ uuid, fernet ]
 #keystone_token_provider: 'uuid'
-enable_keystone_v3: "yes"
-keystone_admin_project_name: "admin"
-keystone_admin_project_domain_name: "Default"
 
 # Interval to rotate fernet keys by (in seconds). Must be an interval of
 # 60(1 min), 120(2 min), 180(3 min), 240(4 min), 300(5 min), 360(6 min),

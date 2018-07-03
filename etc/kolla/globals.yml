@@ -14,7 +14,6 @@ network_interface: "eth1"
 kolla_external_vip_address: "192.168.1.60"
 kolla_external_vip_interface: "eth1"
 neutron_plugin_agent: "opencontrail"
-contrail_api_interface_address: "192.168.1.60"
 enable_haproxy: "no"
 neutron_opencontrail_init_image_full: "opencontrailnightly/contrail-openstack-neutron-init:master-20180131150536-centos7-ocata"
 nova_compute_opencontrail_init_image_full: "opencontrailnightly/contrail-openstack-compute-init:master-20180131150536-centos7-ocata"
@@ -235,9 +234,6 @@ nova_compute_opencontrail_init_image_full: "opencontrailnightly/contrail-opensta
 
 # Valid options are [ uuid, fernet ]
 #keystone_token_provider: 'uuid'
-#enable_keystone_v3: "yes"
-#keystone_admin_project_name: "admin"
-#keystone_admin_project_domain_name: "Default"
 
 # Interval to rotate fernet keys by (in seconds). Must be an interval of
 # 60(1 min), 120(2 min), 180(3 min), 240(4 min), 300(5 min), 360(6 min),

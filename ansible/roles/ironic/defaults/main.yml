@@ -65,3 +65,8 @@ openstack_ironic_inspector_auth: "{{ openstack_auth }}"
 ironic_dnsmasq_interface: "{{ api_interface }}"
 ironic_dnsmasq_dhcp_range:
 ironic_cleaning_network:
+
+custom_ironic_pxe_default: "custom_pxelinux.default.j2"
+ironic_image_url: "http://tarballs.openstack.org/ironic-python-agent/coreos/files"
+ironic_deploy_kernel_image: "coreos_production_pxe.vmlinuz"
+ironic_deploy_initramfs_image: "coreos_production_pxe_image-oem-master.cpio.gz"

@@ -45,6 +45,14 @@ memcache_servers = {{ memcached_servers }}
 memcached_servers = {% for host in groups['memcached'] %}{{ hostvars[host]['ansible_' + hostvars[host]['api_interface']]['ipv4']['address'] }}:{{ memcached_port }}{% if not loop.last %},{% endif %}{% endfor %}
 {%- endif %}
 
+[processing]
+add_ports = all
+keep_ports = present
+node_not_found_hook = enroll
+
+[discovery]
+enroll_node_driver = ipmi
+
 [firewall]
 {% if orchestration_engine == 'KUBERNETES' %}
 dnsmasq_interface = undefined

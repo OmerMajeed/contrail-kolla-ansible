@@ -94,9 +94,7 @@
   with_dict: "{{ ironic_images }}"
   when:
     # Only required when Ironic inspector is in use.
-    - groups['ironic-inspector'] | length > 0
-    - inventory_hostname in groups['ironic-pxe']
-    - not enable_ironic_pxe_uefi | bool
+    - inventory_hostname in groups['ironic-inspector']
     - enable_ironic_inspector | bool
 
 - name: Check if policies shall be overwritten

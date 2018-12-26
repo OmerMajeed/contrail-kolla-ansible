@@ -120,6 +120,7 @@ nova_services:
       - "/lib/modules:/lib/modules:ro"
       - "/run:/run:shared"
       - "/dev:/dev"
+      - "/var/lib/contrail:/var/lib/contrail"
       - "kolla_logs:/var/log/kolla/"
       - "{% if enable_iscsid | bool %}iscsi_info:/etc/iscsi{% endif %}"
       - "libvirtd:/var/lib/libvirt"

@@ -1,0 +1,5 @@
+---
+
+kolla_internal_address: 192.168.17.4
+network_interface: enp2s0f1
+kolla_external_vip_interface: enp2s0f1

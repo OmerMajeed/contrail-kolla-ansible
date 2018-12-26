@@ -11,6 +11,7 @@
       BOOTSTRAP:
     name: "bootstrap_nova_compute_opencontrail_plugin"
     restart_policy: "never"
+    privileged: True
     volumes: "{{ nova_compute.volumes|reject('equalto', '')|list }}"
   when:
     - neutron_plugin_agent == 'opencontrail'
